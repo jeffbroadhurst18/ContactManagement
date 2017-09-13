@@ -1,0 +1,45 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        DOB
+      </th>
+      <th>
+        Telephone
+      </th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of contactList">
+      <td>
+        {{contact.id}}
+      </td>
+      <td>
+        {{contact.name | uppercase}}
+      </td>
+      <td>
+        {{ contact.dob | date}}
+      </td>
+      <td>
+        {{contact.telephone }}
+      </td>
+      <td>
+        {{contact.city }}
+      </td>
+      <td>
+        <button [routerLink]="['/contact',contact.id]" class="btn btn-primary">Edit</button>
+      </td>
+      </tr>
+  </tbody>
+</table> 
+
+
+<button class="btn btn-primary" (click)="addNew()">Add New</button>
+

@@ -1,0 +1,22 @@
+<form #contactForm="ngForm" (submit)="submit()" novalidate>
+  <div class="form-group">
+    <input type="number" name="id" required class="form-control" [(ngModel)]="contact.id" placeholder="ID" #contactid="ngModel">
+  </div>
+  <div class="form-group">
+      <input type="text" minlength="4" maxlength="20" name="name" required class="form-control" [(ngModel)]="contact.name" placeholder="Name" #contactname="ngModel">
+  </div>
+  <div class="form-group">
+      <input type="date" name="dob" required class="form-control" [(ngModel)]="contact.dob" placeholder="DOB" #contactdob="ngModel">
+  </div>
+  <div class="form-group">
+      <input type="text" name="telephone" required class="form-control" [(ngModel)]="contact.telephone" placeholder="Telephone" #contactimage="ngModel">
+  </div>
+  <div class="form-group">
+      <input type="text" name="city" required class="form-control" [(ngModel)]="contact.city" placeholder="City" #contactimage="ngModel">
+  </div>
+  <div class="form-group">
+    <button type="submit"  [disabled]="contactForm.invalid" class="btn btn-primary">Save</button>
+    <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+  </div>
+</form>
+{{contactForm.invalid}}
