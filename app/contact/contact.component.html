@@ -1,0 +1,22 @@
+<form *ngIf="contactForm" [formGroup]="contactForm" (submit)="submit()" novalidate>
+  <div class="form-group">
+    <input type="number" formControlName="id" required class="form-control"  placeholder="ID">
+  </div>
+  <div class="form-group">
+      <input type="text" minlength="4" maxlength="20" formControlName="name" required class="form-control" placeholder="Name" >
+  </div>
+  <div class="form-group">
+      <input type="date" formControlName="dob" required class="form-control" placeholder="DOB" >
+  </div>
+  <div class="form-group">
+      <input type="text" formControlName="telephone" required class="form-control" placeholder="Telephone" >
+  </div>
+  <div class="form-group">
+      <input type="text" formControlName="city" required class="form-control" placeholder="City" >
+  </div>
+  <div class="form-group">
+    <button type="submit"  [disabled]="contactForm.invalid" class="btn btn-primary">Save</button>
+    <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+  </div>
+</form>
+
