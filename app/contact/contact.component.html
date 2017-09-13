@@ -1,18 +1,18 @@
-<form *ngIf="contactForm" [formGroup]="contactForm" (submit)="submit()" novalidate>
+<form *ngIf="contact" [formGroup]="contactForm" (submit)="submit()" novalidate>
   <div class="form-group">
-    <input type="number" formControlName="id" required class="form-control"  placeholder="ID">
+    <input type="number" formControlName="id" required class="form-control"  placeholder="ID" [(ngModel)]="contact.id">
   </div>
   <div class="form-group">
-      <input type="text" minlength="4" maxlength="20" formControlName="name" required class="form-control" placeholder="Name" >
+      <input type="text" minlength="4" maxlength="20" formControlName="name" required class="form-control" [(ngModel)]="contact.name" placeholder="Name" >
   </div>
   <div class="form-group">
-      <input type="date" formControlName="dob" required class="form-control" placeholder="DOB" >
+      <input type="date" formControlName="dob" required class="form-control" placeholder="DOB" [(ngModel)]="contact.dob">
   </div>
   <div class="form-group">
-      <input type="text" formControlName="telephone" required class="form-control" placeholder="Telephone" >
+      <input type="text" formControlName="telephone" required class="form-control" placeholder="Telephone" [(ngModel)]="contact.telephone">
   </div>
   <div class="form-group">
-      <input type="text" formControlName="city" required class="form-control" placeholder="City" >
+      <input type="text" formControlName="city" required class="form-control" placeholder="City" [(ngModel)]="contact.city">
   </div>
   <div class="form-group">
     <button type="submit"  [disabled]="contactForm.invalid" class="btn btn-primary">Save</button>
@@ -20,3 +20,6 @@
   </div>
 </form>
 
+<div [hidden]="hideLog">
+{{contact|json}}
+</div>

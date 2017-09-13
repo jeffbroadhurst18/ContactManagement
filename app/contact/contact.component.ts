@@ -15,11 +15,13 @@ export class ContactComponent implements OnInit {
   contactId: number;
   contactForm: FormGroup;
   isNew: Boolean;
+  hideLog: Boolean;
 
   constructor(private route: ActivatedRoute, private contactService: ContactService,
     private router: Router, private fb: FormBuilder) {
     this.contact = new Contact();
     this.isNew = false;
+    this.hideLog = true;
   }
 
   ngOnInit() {
@@ -31,26 +33,6 @@ export class ContactComponent implements OnInit {
     } else {
       this.contactService.getContact(this.contactId).subscribe((data) => this.processContactResponse(data));
     }
-
-  }
-
-  // buildForm() {
-  //   this.contactForm = this.fb.group({
-  //     'id': [this.contact.id, Validators.required],
-  //     'name': [this.contact.name, Validators.required],
-  //     'dob': [this.contact.dob, Validators.required],
-  //     'telephone': [this.contact.telephone, Validators.required],
-  //     'city': [this.contact.city, Validators.required],
-  //   });
-  // }
-
-  updateForm() {
-    var tempDate = new Date(this.contact[0].dob);
-    this.contactForm.controls['id'].patchValue(this.contact[0].id);
-    this.contactForm.controls['name'].patchValue(this.contact[0].name);
-    this.contactForm.controls['dob'].patchValue(this.contact[0].dob);
-    this.contactForm.controls['telephone'].patchValue(this.contact[0].telephone);
-    this.contactForm.controls['city'].patchValue(this.contact[0].city);
   }
 
   buildForm() {
@@ -63,27 +45,24 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  processContactResponse(data: Contact) {
-    this.contact = data;
-    this.updateForm();
+  processContactResponse(data: any[]) {
+    this.contact.id = data[0].id;
+    this.contact.name = data[0].name;
+    this.contact.dob = data[0].dob;
+    this.contact.telephone = data[0].telephone;
+    this.contact.city = data[0].city;
   }
 
   submit() {
-    this.newContact = new Contact()
-    this.newContact.id = this.contactForm.controls['id'].value;
-    this.newContact.name = this.contactForm.controls['name'].value;
-    this.newContact.dob = this.contactForm.controls['dob'].value;
-    this.newContact.telephone = this.contactForm.controls['telephone'].value;
-    this.newContact.city = this.contactForm.controls['city'].value;
     if (this.isNew) {
-      this.contactService.addContact(this.newContact).subscribe((data) => this.afterSave());
+      this.contactService.addContact(this.contact).subscribe((data) => this.afterSave());
     } else {
-      this.contactService.updateContact(this.newContact).subscribe((data) => this.afterSave());
+      this.contactService.updateContact(this.contact).subscribe((data) => this.afterSave());
     }
   }
 
   afterSave() {
-   this.router.navigate(['/contact-list']);
+    this.router.navigate(['/contact-list']);
   }
 
   cancel() {
