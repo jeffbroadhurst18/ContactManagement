@@ -1,25 +1,32 @@
-<form *ngIf="contact" [formGroup]="contactForm" (submit)="submit()" novalidate>
-  <div class="form-group">
-    <input type="number" formControlName="id" required class="form-control"  placeholder="ID" [(ngModel)]="contact.id">
+<form *ngIf="contact" [formGroup]="contactForm" (submit)="submit()" class="col-md-offset-2 col-md-8" novalidate>
+  <h2>Contact details</h2>
+    <div class="form-group">
+    <div class="contact-line contact-label"><label>ID</label></div>
+    <div class="contact-line contact-text"><input type="number" formControlName="id" required class="form-control" placeholder="ID" [(ngModel)]="contact.id"></div>
   </div>
   <div class="form-group">
-      <input type="text" minlength="4" maxlength="20" formControlName="name" required class="form-control" [(ngModel)]="contact.name" placeholder="Name" >
+    <div class="contact-line contact-label"><label>Name</label></div>
+    <div class="contact-line contact-text"><input type="text" minlength="4" maxlength="20" formControlName="name" required class="form-control" [(ngModel)]="contact.name"
+        placeholder="Name"></div>
   </div>
   <div class="form-group">
-      <input type="date" formControlName="dob" required class="form-control" placeholder="DOB" [(ngModel)]="contact.dob">
+    <div class="contact-line contact-label"><label>Date of Birth</label></div>
+    <div class="contact-line contact-text"><input type="date" formControlName="dob" required class="form-control" placeholder="DOB" [(ngModel)]="contact.dob"></div>
   </div>
   <div class="form-group">
-      <input type="text" formControlName="telephone" required class="form-control" placeholder="Telephone" [(ngModel)]="contact.telephone">
+    <div class="contact-line contact-label"><label>Telephone</label></div>
+    <div class="contact-line contact-text"><input type="text" formControlName="telephone" required class="form-control" placeholder="Telephone" [(ngModel)]="contact.telephone"></div>
   </div>
   <div class="form-group">
-      <input type="text" formControlName="city" required class="form-control" placeholder="City" [(ngModel)]="contact.city">
+    <div class="contact-line contact-label"><label>City</label></div>
+    <div class="contact-line contact-text"><input type="text" formControlName="city" required class="form-control" placeholder="City" [(ngModel)]="contact.city"></div>
   </div>
   <div class="form-group">
-    <button type="submit"  [disabled]="contactForm.invalid" class="btn btn-primary">Save</button>
+    <button type="submit" [disabled]="contactForm.invalid" class="btn btn-primary">Save</button>
     <button class="btn btn-primary" (click)="cancel()">Cancel</button>
   </div>
 </form>
 
 <div [hidden]="hideLog">
-{{contact|json}}
+  {{contact|json}}
 </div>

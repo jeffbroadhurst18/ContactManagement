@@ -1,48 +1,27 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>
-        ID
-      </th>
-      <th>
-        Name
-      </th>
-      <th>
-        DOB
-      </th>
-      <th>
-        Telephone
-      </th>
-      <th>City</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let contact of contactList">
-      <td>
-        {{contact.id}}
-      </td>
-      <td>
-        {{contact.name | uppercase}}
-      </td>
-      <td>
-        {{ contact.dob| date}}
-      </td>
-      <td>
-        {{contact.telephone }}
-      </td>
-      <td>
-        {{contact.city }}
-      </td>
-      <td>
-        <button [routerLink]="['/contact',contact.id]" class="btn btn-primary">Edit</button>
-      </td>
-      <td>
-        <button (click)="deleteContact(contact.id)" class="btn btn-primary">Delete</button>
-      </td>
+<div class=" col-md-offset-1 col-md-8">
+  <h2>List of contacts</h2>
+  <table class="table table-responsive table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Telephone</th>
+        <th>City</th>
       </tr>
-  </tbody>
-</table> 
-
-
-<button class="btn btn-primary" (click)="addNew()">Add New</button>
-
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contactList">
+        <td>{{contact.id}}</td>
+        <td>{{contact.name | uppercase}}</td>
+        <td>{{contact.dob| date}}</td>
+        <td>{{contact.telephone }}</td>
+        <td>{{contact.city }}</td>
+        <td><button [routerLink]="['/contact',contact.id]" class="btn btn-primary">Edit</button></td>
+        <td><button (click)="deleteContact(contact.id)" class="btn btn-primary">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="addNew()">Add New</button>
+  <button class="btn btn-primary" (click)="logout()">Logout</button>
+</div>

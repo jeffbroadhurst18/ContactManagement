@@ -1,11 +1,8 @@
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Contact Management</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a [routerLink]="['/contact-list']">Contact List</a></li>
-      </ul>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" [routerLink]="['/contact-list']">Contact Management</a>
     </div>
-  </nav>
-  <router-outlet></router-outlet>
+  </div>
+</nav>
+<router-outlet></router-outlet>

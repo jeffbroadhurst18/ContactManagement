@@ -11,7 +11,7 @@ import { Login } from '../model/login';
 export class LoginComponent implements OnInit {
   login = new Login();
   isValidUser: boolean;
-  constructor(private loginService: LoginService, private routerService: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   loginUser() {
     let result = this.loginService.login(this.login);
     if (result) {
-      this.routerService.navigate(['/contact-list']);
+      this.router.navigate(['/contact-list']);
     }
     else {
       this.isValidUser = false;
